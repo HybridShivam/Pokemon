@@ -4,6 +4,9 @@
  Sugimori Artwork to begin with.
  Main source is Bulbapedia.
  
+# Currently available:
+* Generation 1
+ 
 # Source
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
 
