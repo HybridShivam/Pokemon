@@ -11,7 +11,7 @@
  
  
 # Currently Available:
-* Generation 1
+* Generation I
  
 # Source
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
