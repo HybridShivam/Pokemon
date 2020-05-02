@@ -1,5 +1,7 @@
 # Pokemon
  The highest quality Pokemon assets.
+ 
+ 
  This repository will be available as a open host for the highest quality Pokemon Images.
  Sugimori Artwork to begin with.
  Main source is Bulbapedia.
