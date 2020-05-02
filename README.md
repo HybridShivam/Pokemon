@@ -20,10 +20,8 @@
  1. Open Every Pokemon's page.
  1. Click on its Image (on the right side).
  1. Now the most important: Click & Download the **Original file**.
-<dl>
-  <dt>![Download 1](/demo/download1.png)</dt>
-  <dt>![Download 2](/demo/download2.png)</dt>
-</dl>
+![Download 1](/demo/download1.png)
+![Download 2](/demo/download2.png)
 
 
 
