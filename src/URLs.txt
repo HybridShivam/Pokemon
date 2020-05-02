@@ -1,0 +1,10 @@
+//cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png
+//cdn.bulbagarden.net/upload/7/73/002Ivysaur.png
+//cdn.bulbagarden.net/upload/a/ae/003Venusaur.png
+//cdn.bulbagarden.net/upload/7/73/004Charmander.png
+//cdn.bulbagarden.net/upload/4/4a/005Charmeleon.png
+//cdn.bulbagarden.net/upload/7/7e/006Charizard.png
+//cdn.bulbagarden.net/upload/3/39/007Squirtle.png
+//cdn.bulbagarden.net/upload/0/0c/008Wartortle.png
+//cdn.bulbagarden.net/upload/0/02/009Blastoise.png
+//cdn.bulbagarden.net/upload/5/5d/010Caterpie.png
