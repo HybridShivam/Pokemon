@@ -11,7 +11,7 @@ for i in data['results']:
 pokemonImagePageUrls=[]
 for i in pokemonNames:
     pokemonImagePageUrls.append(i)
-    print(i)
+    print(i.title().replace('-','_'))
 '''
 myurls="https://bulbapedia.bulbagarden.net/wiki/File:154Meganium.png"
 
