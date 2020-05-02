@@ -23,7 +23,7 @@
 **Like Rescaling the images for various purposes e.g. Thumbnails etc.**
 
 *Guidelines:*
- * All Pokemon names must be renamed to their national dex no. and without any zero padding to facilitate easy access.
+ * All Pokemon names must be renamed to their national dex no. and with appropriate formatting to facilitate easy access.
  * Please ensure that the quality requirements for the section are met.
  * You can acquire the assets in your own ways but be sure to stick to the quality.
 
