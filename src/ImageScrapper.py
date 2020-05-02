@@ -9,9 +9,13 @@ pokemonNames=[]
 for i in data['results']:
     pokemonNames.append(i['name'])
 pokemonImagePageUrls=[]
+id=1
 for i in pokemonNames:
     pokemonImagePageUrls.append(i)
-    print(i.title().replace('-','_'))
+    name=i.title().replace('-','_')
+    url="https://bulbapedia.bulbagarden.net/wiki/File:"+str(id)+name+."png"
+    print(name+" "+url)
+    id=id+1
 '''
 myurls="https://bulbapedia.bulbagarden.net/wiki/File:154Meganium.png"
 
