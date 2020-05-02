@@ -17,6 +17,7 @@
  * Please ensure that the quality requirements for the section are met.
 
 *Steps:*
+ 1. Get Yourself assigned to an issue first so that no two people work on the same Generation.
  1. Go to [List of Pokémon by National Pokédex number](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number#List_of_Pok.C3.A9mon_by_National_Pok.C3.A9dex_number)
  1. Choose any one generation you want to add:
   e.g [Gen II](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number#Generation_II) 
