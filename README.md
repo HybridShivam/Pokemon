@@ -33,7 +33,7 @@
  1. Repeat for all others.
  1. Rename to the desired format and file a PR.
  
-*Thanks for your valuable contribution*
+*Thanks for your valuable contribution.*
 
 # Copyright Notice
 Please note everything in this repository is copyrighted by the Pokémon Company and its affiliates. This repository is merely a compilation of data collected by the editors of Bulbapedia.
