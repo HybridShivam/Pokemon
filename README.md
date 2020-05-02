@@ -18,8 +18,10 @@
 
 
 # Contribute
-**Now I have switched to webscraping the image URLs**
-**You Can still contribute in any form you feel like.**
+**Now I have switched to webscraping the image URLs.**
+
+**But you Can still contribute in any form you feel like.**
+
 **Like Rescaling the images for various purposes e.g. Thumbnails etc.**
 
 *Guidelines:*
