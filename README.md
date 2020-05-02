@@ -30,7 +30,7 @@
 *Guidelines:*
  * All Pokemon names must be renamed to their national dex no. and with appropriate formatting to facilitate easy access.
  * Please ensure that the quality requirements for the section are met.
- * You can acquire the assets in your own ways but be sure to stick to the quality.
+ * You can add other assets as well but be sure to stick to the quality.
 
 *Thanks for your valuable contribution.*
 
