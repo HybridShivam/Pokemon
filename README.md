@@ -20,6 +20,7 @@
  1. Open Every Pokemon's page.
  1. Click on its Image (on the right side).
  1. Now the most important: Click & Download the **Original file**.
+  (I recommend using IDM for easier downloads)
 
 
 
