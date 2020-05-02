@@ -14,7 +14,7 @@ id=1
 # Generating URLs
 for i in pokemonNames:
     name=i.title().replace('-','_')
-    url="https://bulbapedia.bulbagarden.net/wiki/File:"+str(id).zfill(3);+name+".png"
+    url="https://bulbapedia.bulbagarden.net/wiki/File:"+str(id).zfill(3)+name+".png"
     pokemonImagePageUrls.append(url)
     print(name+" "+url)
     id=id+1
