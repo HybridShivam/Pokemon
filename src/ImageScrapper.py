@@ -22,9 +22,10 @@ for i in pokemonNames:
 # Now Making requests
 for url in pokemonImagePageUrls:
     page = requests.get(url)
-    soup=BeautifulSoup(page.content, 'html.parser')
-    res=soup.find(class_='fullMedia').find(class_="internal")
-    print(res['href'])
+    if(page.status_code==200):
+        soup=BeautifulSoup(page.content, 'html.parser')
+        res=soup.find(class_='fullMedia').find(class_="internal")
+        print(res['href'])
 
 #myurls="https://bulbapedia.bulbagarden.net/wiki/File:154Meganium.png"
 ##mydivs = soup.findAll("div", {"class": "fullMedia"})
