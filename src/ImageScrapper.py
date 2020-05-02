@@ -13,7 +13,7 @@ id=1
 for i in pokemonNames:
     pokemonImagePageUrls.append(i)
     name=i.title().replace('-','_')
-    url="https://bulbapedia.bulbagarden.net/wiki/File:"+str(id)+name+."png"
+    url="https://bulbapedia.bulbagarden.net/wiki/File:"+str(id)+name+".png"
     print(name+" "+url)
     id=id+1
 '''
