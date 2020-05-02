@@ -1,4 +1,4 @@
-# Pokémon 
+# Pokémon Images
  The highest quality Pokemon images.
  
  This repository will be available as a public host for the highest quality Pokemon Images.
