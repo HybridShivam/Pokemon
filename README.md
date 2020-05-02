@@ -1,4 +1,4 @@
-# Pokémon 
+# Pokémon
  The highest quality Pokemon images.
  
  This repository will be available as a public host for the highest quality Pokemon Images.
@@ -11,14 +11,17 @@
  
  
 # Currently Available:
-* Generation 1
+* Generation I
  
 # Source
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
 
 
+
 # Contribute
 **Now I have switched to webscraping the image URLs.**
+
+**URLs.txt contains all the Bulbapedia URLs scrapped.**
 
 **But you Can still contribute in any form you feel like.**
 
@@ -27,7 +30,7 @@
 *Guidelines:*
  * All Pokemon names must be renamed to their national dex no. and with appropriate formatting to facilitate easy access.
  * Please ensure that the quality requirements for the section are met.
- * You can acquire the assets in your own ways but be sure to stick to the quality.
+ * You can add other assets as well but be sure to stick to the quality.
 
 *Thanks for your valuable contribution.*
 
