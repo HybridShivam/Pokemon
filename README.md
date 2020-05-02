@@ -17,8 +17,11 @@
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
 
 
+
 # Contribute
 **Now I have switched to webscraping the image URLs.**
+
+**URLs.txt contains all the Bulbapedia URLs scrapped.**
 
 **But you Can still contribute in any form you feel like.**
 
