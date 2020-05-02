@@ -35,7 +35,7 @@ for url in pokemonImagePageUrls:
     id=id+1
 print(expectional)
 
-# Storing in the data in a File
+# Storing the data in a File
 with open('URLs.txt', 'w') as f:
     for url in directUrls:
         f.write("%s\n" % url)
