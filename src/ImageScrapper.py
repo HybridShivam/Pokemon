@@ -23,15 +23,22 @@ for i in pokemonNames:
 # Also finding which are exceptional URLs
 expectional=[]
 id=0
-for url in pokemonImagePageUrls[0:2]:
+directUrls=[]
+for url in pokemonImagePageUrls:
     page = requests.get(url)
     if(page.status_code==200):
         soup=BeautifulSoup(page.content, 'html.parser')
         res=soup.find(class_='fullMedia').find(class_="internal")
-        print(res['href'])
+        directUrls.append(res['href'])
     else:
-        exceptional.append(pokemonNames[id])
-print(exceptional)
-#myurls="https://bulbapedia.bulbagarden.net/wiki/File:154Meganium.png"
-##mydivs = soup.findAll("div", {"class": "fullMedia"})
-#links = soup.findAll("a", class_="fullMedia internal")
+        expectional.append(pokemonNames[id])
+    id=id+1
+print(expectional)
+
+# Storing in the data in a File
+with open('URLs.txt', 'w') as f:
+    for url in directUrls:
+        f.write("%s\n" % url)
+with open('Failed.txt', 'w') as f:
+    for name in expectional:
+        f.write("%s\n" % name)
