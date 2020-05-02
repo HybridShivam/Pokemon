@@ -9,7 +9,7 @@
  
  Main source is Bulbapedia.
  
-# Currently available:
+# Currently Available:
 * Generation 1
  
 # Source
