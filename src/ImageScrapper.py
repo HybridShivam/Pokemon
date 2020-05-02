@@ -14,18 +14,18 @@ id=1
 # Generating URLs
 for i in pokemonNames:
     name=i.title().replace('-','_')
-    url="https://bulbapedia.bulbagarden.net/wiki/File:"+str(id)+name+".png"
+    url="https://bulbapedia.bulbagarden.net/wiki/File:"+str(id).zfill(3);+name+".png"
     pokemonImagePageUrls.append(url)
     print(name+" "+url)
     id=id+1
 
 # Now Making requests
-for url in pokemonImagePageUrls:
+for url in pokemonImagePageUrls[0:2]:
     page = requests.get(url)
-    if(page.status_code==200):
-        soup=BeautifulSoup(page.content, 'html.parser')
-        res=soup.find(class_='fullMedia').find(class_="internal")
-        print(res['href'])
+    print(type(page.status_code),page.status_code)
+    soup=BeautifulSoup(page.content, 'html.parser')
+    res=soup.find(class_='fullMedia').find(class_="internal")
+    print(res['href'])
 
 #myurls="https://bulbapedia.bulbagarden.net/wiki/File:154Meganium.png"
 ##mydivs = soup.findAll("div", {"class": "fullMedia"})
