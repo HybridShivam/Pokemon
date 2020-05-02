@@ -20,25 +20,13 @@
 # Contribute
 **Now I have switched to webscraping the image URLs**
 **You Can still contribute in any form you feel like.**
+**Like Rescaling the images for various purposes e.g. Thumbnails etc.**
 
 *Guidelines:*
  * All Pokemon names must be renamed to their national dex no. and without any zero padding to facilitate easy access.
  * Please ensure that the quality requirements for the section are met.
  * You can acquire the assets in your own ways but be sure to stick to the quality.
 
-~
-*Recommended Steps:*
- 1. Get Yourself assigned to an issue first so that no two people work on the same Generation.
- 1. Go to [List of Pokémon by National Pokédex number](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number#List_of_Pok.C3.A9mon_by_National_Pok.C3.A9dex_number)
- 1. Choose any one generation you want to add:
-  e.g [Gen II](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number#Generation_II) 
- 1. Open Every Pokemon's page.
- 1. Click on its Image (on the right side).
- 1. Now the most important: Click & Download the **Original file**.
- 1. Repeat for all others.
- 1. Rename to the desired format and file a PR.
- ~
- 
 *Thanks for your valuable contribution.*
 
 # Copyright Notice
