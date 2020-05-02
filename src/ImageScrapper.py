@@ -7,7 +7,7 @@ r=requests.get(url)
 data=r.json()
 # Storing Names
 pokemonNames=[]
-for i in data['results'][0:10]:
+for i in data['results']:
     pokemonNames.append(i['name'])
 pokemonImagePageUrls=[]
 id=1
