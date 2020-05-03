@@ -38,7 +38,7 @@ print(expectional)
 # Storing the data in a File
 with open('URLs.txt', 'w') as f:
     for url in directUrls:
-        f.write("%s\n" % url)
+        f.write("%s\n" % "http:"+url)
 with open('Failed.txt', 'w') as f:
     for name in expectional:
         f.write("%s\n" % name)
