@@ -15,7 +15,7 @@
 * Generation II
 * Generation III
 
-*The scripts can be used to download all Images.*
+*The scripts can be used to download all the images.*
  
 # Source
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
