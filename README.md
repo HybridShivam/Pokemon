@@ -14,11 +14,33 @@
 * Generation I
 * Generation II
 * Generation III
+
+*The scripts can be used to download all the images.*
  
 # Source
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
 
+# Getting Started:
+Just clone the repo or just the src files.
 
+```
+# Install Required Libraries first
+python -m pip install requests
+python -m pip install beautifulsoup4
+
+# ImageScapper.py
+For Scrapping the URLs to URLs.txt and the exceptional URLs to failed.txt
+
+# Downloader.py
+For Downloading images with their id to src/downloads/***.png
+
+# URLs.txt
+Contains all the pokemon URLs
+
+# Failed.txt
+Contains all the exceptional URLs which can't be fetched due to exceptional naming in their page names like Mr. Mime's
+https://bulbapedia.bulbagarden.net/wiki/File:122Mr._Mime.png
+```
 
 # Contribute
 **Now I have switched to webscraping the image URLs.**
