@@ -2,7 +2,7 @@ import requests
 import re
 
 # Reading Line by Line
-f = open('URLs2.txt', 'r') 
+f = open('URLs.txt', 'r') 
 Lines = f.readlines() 
   
 count = 0
@@ -15,11 +15,13 @@ f.close()
 # Downloading
 for url in URLs:
     try:
-        found = re.search('/\d\d\d', url).group(1)
+        id = re.search("/\d\d\d", url).group(0)
+        id=id[1:]
     except AttributeError:
-        found = ''
-        print('An Error Occured)
-    found=found[1:]
-    file = requests.get(url, allow_redirects=True)
-    open('/downloads/'+found, 'wb').write(file.content)
-
+        id = ''
+        print('An Error Occured')
+    r = requests.get(url, stream=True)
+    with open("downloads/"+id+".png",'wb') as file:
+        for chunk in r.iter_content(chunk_size=1024):
+          if chunk: 
+             file.write(chunk)
