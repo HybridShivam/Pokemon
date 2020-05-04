@@ -49,7 +49,7 @@ https://bulbapedia.bulbagarden.net/wiki/File:122Mr._Mime.png
 
 **But you Can still contribute in any form you feel like.**
 
-**Like Rescaling the images for various purposes e.g. Thumbnails etc.**
+**Like Rescaling the images for various purposes e.g. Thumbnails.**
 
 *Guidelines:*
  * All Pokemon names must be renamed to their national dex no. and with appropriate formatting to facilitate easy access.
