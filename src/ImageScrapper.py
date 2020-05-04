@@ -29,16 +29,16 @@ for url in pokemonImagePageUrls:
     if(page.status_code==200):
         soup=BeautifulSoup(page.content, 'html.parser')
         res=soup.find(class_='fullMedia').find(class_="internal")
-        directUrls.append(res['href'])
+        directUrls.append("http:"+res['href'])
     else:
         expectional.append(pokemonNames[id])
     id=id+1
 print(expectional)
 
 # Storing the data in a File
-with open('URLs.txt', 'w') as f:
+with open('URLs2.txt', 'w') as f:
     for url in directUrls:
-        f.write("%s\n" % "http:"+url)
-with open('Failed.txt', 'w') as f:
+        f.write("%s\n" % url)
+with open('Failed2.txt', 'w') as f:
     for name in expectional:
         f.write("%s\n" % name)
