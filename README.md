@@ -28,7 +28,7 @@ Just clone the repo or just the src files.
 python -m pip install requests
 python -m pip install beautifulsoup4
 
-# ImageScapper.py
+# ImageScrapper.py
 For Scrapping the URLs to URLs.txt and the exceptional URLs to failed.txt
 
 # Downloader.py
