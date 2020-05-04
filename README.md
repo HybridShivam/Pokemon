@@ -15,7 +15,7 @@
 * Generation II
 * Generation III
 
-*The scripts can be used to download all the images.*
+*Technically speaking, The scripts can be used to download all the images of Pokémons who are listed in the PokéApi and Bulbapedia has the image.[ Except for a few Pokemon with exceptional names ]*
  
 # Source
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
