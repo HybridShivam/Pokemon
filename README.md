@@ -14,6 +14,8 @@
 * Generation I
 * Generation II
 * Generation III
+
+*The scripts can be used to download all Images.*
  
 # Source
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
