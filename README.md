@@ -23,9 +23,10 @@
 
 # Getting Started:
 **For Fetching Images:**
-Generate URLs like this (For Base Forms) :
+Generate URLs like this :
 https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/001.png
 https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gigantamax.png
+Programmatically fetch base forms:
 ```
 this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' + 
                         this.pad(this.pokemon.id, 3) + '.png';
