@@ -11,9 +11,9 @@
  
  
 # Currently Available:
-* Generation I
-* Generation II
-* Generation III
+ *All Forms Included*
+* Upto Gen VIII (Compressed)
+* Upto Gen VIII HQ (Original Quality)
 
 *Technically speaking, The scripts can be used to download all the images of Pokémons who are listed in the PokéApi and Bulbapedia has the image.[ Except for a few Pokemon with exceptional names ]*
  
