@@ -26,6 +26,7 @@
 Generate URLs like this :
 https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/001.png
 https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gigantamax.png
+
 Programmatically fetch base forms:
 ```
 this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' + 
