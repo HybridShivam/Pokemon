@@ -18,10 +18,34 @@
 *Technically speaking, The scripts can be used to download all the images of Pokémons who are listed in the PokéApi and Bulbapedia has the image.[ Except for a few Pokemon with exceptional names ]*
  
 # Source
+ WebScrapped from: 
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
 
 # Getting Started:
-Just clone the repo or just the src files.
+**For Fetching Images:**
+Generate URLs like this (For Base Forms) :
+https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/001.png
+https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gigantamax.png
+```
+this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' + 
+                        this.pad(this.pokemon.id, 3) + '.png';
+```
+*Pad method:*
+```
+pad(number, length) {
+    let str = '' + number;
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
+  }
+```
+*For Forms: Remember to follow Capital Casing with seperation with '-'
+e.g. 254-Mega , 800-Dawn-Wings, 792-Full-Moon-Phase, 569-Gigantamax, 413-Sandy, 006-Mega-X, 025-Rock-Star etc.*
+
+**For the python Scripts:**
+
+Just clone the repo or download just the src files.
 
 ```
 # Install Required Libraries first
