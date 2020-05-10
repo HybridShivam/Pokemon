@@ -9,6 +9,8 @@
  
  Main source is Bulbapedia.
  
+ ![Pokémon](https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gigantamax.png)
+ 
  
 # Currently Available:
  *All Forms Included*
