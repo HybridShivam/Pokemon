@@ -14,7 +14,61 @@ def gPokemon():
 
     
 def gPokemonSpecies():
-    print('Generating /gPokemonSpecies/')
+    print('Generating /pokemon-species/')
+    # Retrieve All Requests
+    mainURL='https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=1000000'
+    print(mainURL)
+    r=req.get(mainURL)
+    data=r.json()
+    # Storing Individual Requests
+    URLs=[]
+    results=[]
+    count=0
+    total=len(data['results'])
+    for i in data['results']:
+        count=count+1
+        percent=math.floor((count/total)*100)
+        if(percent%2==0):
+            print(str(percent)+'% ('+str(count)+'/'+str(total)+')')
+        url=i['url']
+        URLs.append(i['url'])
+        response=req.get(url)
+        data=response.json()
+        DataToWrite=dict()
+        DataToWrite['base_happiness']=data['base_happiness']
+        DataToWrite['capture_rate']=data['capture_rate']
+        DataToWrite['color']=data['color']
+        DataToWrite['egg_groups']=data['egg_groups']
+        DataToWrite['evolution_chain']=data['evolution_chain']
+        DataToWrite['flavor_text_entries']=[]
+        DataToWrite['form_descriptions']=[]
+        DataToWrite['forms_switchable']=data['forms_switchable']
+        DataToWrite['gender_rate']=data['gender_rate']
+        DataToWrite['genera']=[]
+        DataToWrite['generation']=data['generation']
+        DataToWrite['growth_rate']=data['growth_rate']
+        DataToWrite['has_gender_differences']=data['has_gender_differences']
+        DataToWrite['hatch_counter']=data['hatch_counter']
+        DataToWrite['id']=data['id']
+        DataToWrite['is_baby']=data['is_baby']
+        DataToWrite['name']=data['name']
+        DataToWrite['order']=data['order']
+        DataToWrite['varieties']=data['varieties']
+        for entry in data['flavor_text_entries']:
+            if(entry['language']['name']=='en'):
+                DataToWrite['flavor_text_entries'].append(entry)
+        for entry in data['form_descriptions']:
+            if(entry['language']['name']=='en'):
+                DataToWrite['form_descriptions'].append(entry)
+        for entry in data['genera']:
+            if(entry['language']['name']=='en'):
+                DataToWrite['genera'].append(entry)
+        results.append(DataToWrite)
+    fileName='pokemon-species.json'
+    with open(fileName,'w') as f:
+        data={'pokemon-species':results}
+        f.write(json.dumps(data))
+        print('Data wrote to '+fileName)
 
     
 def gEvolutionChain():
