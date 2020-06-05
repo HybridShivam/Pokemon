@@ -71,7 +71,7 @@ def gPokemonSpecies():
         print('Data wrote to '+fileName)
 
     
-def gEvolutionChain():
+'''def gEvolutionChain():
     print('Generating /evolution-chain/')
     # Retrieve All Requests
     mainURL='https://pokeapi.co/api/v2/evolution-chain/?offset=0&limit=100000'
@@ -93,6 +93,35 @@ def gEvolutionChain():
         response=req.get(url)
         data=response.json()
         results.append(data)
+    fileName='evolution-chain.json'
+    with open(fileName,'w') as f:
+        data={'evolution-chains':results}
+        f.write(json.dumps(data))
+        print('Data wrote to '+fileName)'''
+
+def gEvolutionChain():
+    print('Generating /evolution-chain/')
+    # Retrieve All Requests
+    mainURL='https://pokeapi.co/api/v2/evolution-chain/?offset=0&limit=10000'
+    print(mainURL)
+    r=req.get(mainURL)
+    data=r.json()
+    # Storing Individual Requests
+    URLs=[]
+    results=[None]*427
+    count=0
+    total=len(data['results'])
+    for i in data['results']:
+        count=count+1
+        percent=math.floor((count/total)*100)
+        if(percent%2==0):
+            print(str(percent)+'% ('+str(count)+'/'+str(total)+')')
+        url=i['url']
+        URLs.append(i['url'])
+        response=req.get(url)
+        data=response.json()
+        results[data['id']-1]=data
+    print(results)
     fileName='evolution-chain.json'
     with open(fileName,'w') as f:
         data={'evolution-chains':results}
