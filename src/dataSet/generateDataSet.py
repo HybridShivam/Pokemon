@@ -20,7 +20,7 @@ def gPokemonSpecies():
 def gEvolutionChain():
     print('Generating /evolution-chain/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/evolution-chain/?offset=0&limit=10000'
+    mainURL='https://pokeapi.co/api/v2/evolution-chain/?offset=0&limit=100000'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -52,6 +52,44 @@ def gMove():
     
 def gAbility():
     print('Generating /ability/')
+    # Retrieve All Requests
+    mainURL='https://pokeapi.co/api/v2/ability/?offset=0&limit=100000'
+    print(mainURL)
+    r=req.get(mainURL)
+    data=r.json()
+    # Storing Individual Requests
+    URLs=[]
+    results=[]
+    count=0
+    total=len(data['results'])
+    for i in data['results']:
+        count=count+1
+        percent=math.floor((count/total)*100)
+        if(percent%2==0):
+            print(str(percent)+'% ('+str(count)+'/'+str(total)+')')
+        url=i['url']
+        URLs.append(i['url'])
+        response=req.get(url)
+        data=response.json()
+        DataToWrite=dict()
+        DataToWrite['id']=data['id']
+        DataToWrite['is_main_series']=data['is_main_series']
+        DataToWrite['name']=data['name']
+        DataToWrite['generation']=data['generation']
+        DataToWrite['flavor_text_entries']=[]
+        DataToWrite['effect_entries']=[]
+        for entry in data['flavor_text_entries']:
+            if(entry['language']['name']=='en'):
+                DataToWrite['flavor_text_entries'].append(entry)
+        for entry in data['effect_entries']:
+            if(entry['language']['name']=='en'):
+                DataToWrite['effect_entries'].append(entry)
+        results.append(DataToWrite)
+    fileName='ability.json'
+    with open(fileName,'w') as f:
+        data={'abilities':results}
+        f.write(json.dumps(data))
+        print('Data wrote to '+fileName)
 
     
 
