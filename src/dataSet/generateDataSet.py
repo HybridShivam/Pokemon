@@ -12,7 +12,7 @@ def takeInput():
 def gPokemon():
     print('Generating /pokemon/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/pokemon/?offset=0&limit=2'
+    mainURL='https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10000000000'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -170,6 +170,31 @@ def gEvolutionChain():
     
 def gMove():
     print('Generating /move/')
+    # Retrieve All Requests
+    mainURL='https://pokeapi.co/api/v2/move/?offset=0&limit=100000'
+    print(mainURL)
+    r=req.get(mainURL)
+    data=r.json()
+    # Storing Individual Requests
+    URLs=[]
+    results=[]
+    count=0
+    total=len(data['results'])
+    for i in data['results']:
+        count=count+1
+        percent=math.floor((count/total)*100)
+        if(percent%2==0):
+            print(str(percent)+'% ('+str(count)+'/'+str(total)+')')
+        url=i['url']
+        URLs.append(i['url'])
+        response=req.get(url)
+        data=response.json()
+        results.append(data)
+    fileName='move.json'
+    with open(fileName,'w') as f:
+        data={'moves':results}
+        f.write(json.dumps(data))
+        print('Data wrote to '+fileName)
 
     
 def gAbility():
