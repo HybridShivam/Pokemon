@@ -11,6 +11,45 @@ def takeInput():
 
 def gPokemon():
     print('Generating /pokemon/')
+    # Retrieve All Requests
+    mainURL='https://pokeapi.co/api/v2/pokemon/?offset=0&limit=2'
+    print(mainURL)
+    r=req.get(mainURL)
+    data=r.json()
+    # Storing Individual Requests
+    URLs=[]
+    results=dict()
+    count=0
+    total=len(data['results'])
+    for i in data['results']:
+        count=count+1
+        percent=math.floor((count/total)*100)
+        if(percent%2==0):
+            print(str(percent)+'% ('+str(count)+'/'+str(total)+')')
+        url=i['url']
+        URLs.append(i['url'])
+        response=req.get(url)
+        data=response.json()
+        DataToWrite=dict()
+        DataToWrite['abilities']=data['abilities']
+        DataToWrite['base_experience']=data['base_experience']
+        DataToWrite['height']=data['height']
+        DataToWrite['held_items']=data['held_items']
+        DataToWrite['id']=data['id']
+        DataToWrite['is_default']=data['is_default']
+        DataToWrite['moves']=data['moves']
+        DataToWrite['name']=data['name']
+        DataToWrite['order']=data['order']
+        DataToWrite['species']=data['species']
+        DataToWrite['stats']=data['stats']
+        DataToWrite['types']=data['types']
+        DataToWrite['weight']=data['weight']
+        results[DataToWrite['id']]=DataToWrite
+    fileName='pokemon.json'
+    with open(fileName,'w') as f:
+        data={'pokemon':results}
+        f.write(json.dumps(data))
+        print('Data wrote to '+fileName)
 
     
 def gPokemonSpecies():
