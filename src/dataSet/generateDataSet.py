@@ -1,6 +1,18 @@
 import json
 import requests as req
 import math
+import re
+
+
+
+
+gameVersions={"red-blue":1,"yellow":2,"gold-silver":3,"crystal":4,"ruby-sapphire":5,"emerald":6,
+              "firered-leafgreen":7,"diamond-pearl":8,"platinum":9,"heartgold-soulsilver":10,"black-white":11,"colosseum":12,
+              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18}
+
+
+def MachineUrlToID(url):
+    return int(re.sub(r'http(s)?:\/\/pokeapi.co\/api\/v2\/machine\/(\d+)\/', '\\2', url))
 
 def takeInput():
     print('-----------\n\n\n')
@@ -171,7 +183,7 @@ def gEvolutionChain():
 def gMove():
     print('Generating /move/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/move/?offset=0&limit=100000'
+    mainURL='https://pokeapi.co/api/v2/move/?offset=0&limit=1000000000'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -189,7 +201,23 @@ def gMove():
         URLs.append(i['url'])
         response=req.get(url)
         data=response.json()
-        results.append(data)
+        DataToWrite=dict()
+        DataToWrite['id']=data['id']
+        DataToWrite['generation']=data['generation']['name']
+        DataToWrite['machines']=dict()
+        DataToWrite['flavor_text_entries']=dict()
+        for entry in data['flavor_text_entries']:
+            if(entry['language']['name']=='en'):
+                DataToWrite['flavor_text_entries'][gameVersions[entry['version_group']['name']]]=entry['flavor_text']
+        for entry in data['effect_entries']:
+            if(entry['language']['name']=='en'):
+                effectEntry=dict()
+                effectEntry['effect']=entry['effect']
+                effectEntry['short_effect']=entry['short_effect']
+                DataToWrite['effect_entries']=effectEntry
+        for entry in data['machines']:
+            DataToWrite['machines'][gameVersions[entry['version_group']['name']]]=MachineUrlToID(entry['machine']['url'])
+        results.append(DataToWrite)
     fileName='move.json'
     with open(fileName,'w') as f:
         data={'moves':results}
