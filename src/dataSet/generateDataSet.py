@@ -17,6 +17,12 @@ def EvoChainUrlToID(url):
     return int(re.sub(r'http(s)?:\/\/pokeapi.co\/api\/v2\/evolution-chain\/(\d+)\/', '\\2', url))
 def PokemonUrlToID(url):
     return int(re.sub(r'http(s)?:\/\/pokeapi.co\/api\/v2\/pokemon\/(\d+)\/', '\\2', url))
+def AbilityUrlToID(url):
+    return int(re.sub(r'http(s)?:\/\/pokeapi.co\/api\/v2\/ability\/(\d+)\/', '\\2', url))
+def SpeciesUrlToID(url):
+    return int(re.sub(r'http(s)?:\/\/pokeapi.co\/api\/v2\/pokemon-species\/(\d+)\/', '\\2', url))
+def TypeUrlToID(url):
+    return int(re.sub(r'http(s)?:\/\/pokeapi.co\/api\/v2\/type\/(\d+)\/', '\\2', url))
 
 
 def takeInput():
@@ -29,7 +35,7 @@ def takeInput():
 def gPokemon():
     print('Generating /pokemon/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10000000000'
+    mainURL='https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100000'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -48,19 +54,39 @@ def gPokemon():
         response=req.get(url)
         data=response.json()
         DataToWrite=dict()
-        DataToWrite['abilities']=data['abilities']
-        DataToWrite['base_experience']=data['base_experience']
-        DataToWrite['height']=data['height']
-        DataToWrite['held_items']=data['held_items']
+        DataToWrite['Ab']=[]
+        for ability in data['abilities']:
+            abi=dict()
+            abi['n']=ability['ability']['name']
+            abi['id']=AbilityUrlToID(ability['ability']['url'])
+            abi['isH']=ability['is_hidden']
+            DataToWrite['Ab'].append(abi)
+        DataToWrite['BE']=data['base_experience']
+        DataToWrite['H']=data['height']
+        DataToWrite['HI']=[]
+        for i in data['held_items']:
+            item=dict()
+            item['n']=i['item']['name']
+            item['%']=i['version_details'][-1]['rarity']
+            DataToWrite['HI'].append(item)
         DataToWrite['id']=data['id']
-        DataToWrite['is_default']=data['is_default']
-        DataToWrite['moves']=data['moves']
-        DataToWrite['name']=data['name']
-        DataToWrite['order']=data['order']
-        DataToWrite['species']=data['species']
-        DataToWrite['stats']=data['stats']
-        DataToWrite['types']=data['types']
-        DataToWrite['weight']=data['weight']
+        DataToWrite['isD']=data['is_default']
+        DataToWrite['N']=data['name']
+        DataToWrite['Sp']={'n':data['species']['name'],'id':SpeciesUrlToID(data['species']['url'])}
+        DataToWrite['St']=[]
+        for i in data['stats']:
+            item=dict()
+            item['n']=i['stat']['name']
+            item['EV']=i['effort']
+            item['bs']=i['base_stat']
+            DataToWrite['St'].append(item)
+        DataToWrite['T']=[]
+        for i in data['types']:
+            item=dict()
+            item['n']=i['type']['name']
+            item['id']=TypeUrlToID(i['type']['url'])
+            DataToWrite['T'].append(item)
+        DataToWrite['W']=data['weight']
         results[DataToWrite['id']]=DataToWrite
     fileName='pokemon.json'
     with open(fileName,'w') as f:
