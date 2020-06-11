@@ -1,6 +1,8 @@
 # Pokémon
  The highest quality Pokemon images.
  
+ Also it contains a smaller version of the data from PokeAPI for offline usage (Which I used in my web app).
+ 
  This repository will be available as a public host for the highest quality Pokemon Images.
  
  Sugimori Artwork to begin with.
@@ -16,6 +18,7 @@
  *All Forms Included*
 * Upto Gen VIII (Compressed)
 * Upto Gen VIII HQ (Original Quality)
+* Pokemon, Pokemon-Species, Moves, Abilities etc.
 
 *Technically speaking, The scripts can be used to download all the images of Pokémons who are listed in the PokéApi and Bulbapedia has the image.[ Except for a few Pokemon with exceptional names ]*
  
