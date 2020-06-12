@@ -54,7 +54,7 @@ pad(number, length) {
 *For Forms: Remember to follow Capital Casing with seperation with '-'
 e.g. 254-Mega , 800-Dawn-Wings, 792-Full-Moon-Phase, 569-Gigantamax, 413-Sandy, 006-Mega-X, 025-Rock-Star etc.*
 
-**For the python Scripts:**
+**For the Scraping Image URLs from Bulbapedia:**
 
 Just clone the repo or download just the src files.
 
@@ -76,7 +76,9 @@ Contains all the pokemon URLs
 Contains all the exceptional URLs which can't be fetched due to exceptional naming in their page names like Mr. Mime's
 https://bulbapedia.bulbagarden.net/wiki/File:122Mr._Mime.png
 ```
-
+**For Generating the DataSet from PokeAPI:**
+ 1. Just clone the repo or download just the src files.
+ 1. Run `src/generateDataSet.py` to generate and Download the dataset. 
 
 # Copyright Notice
 Please note everything in this repository is copyrighted by the Pokémon Company and its affiliates. This repository is merely a compilation of data collected by the editors of Bulbapedia and Data from Veekun and PokeAPI.
