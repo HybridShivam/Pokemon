@@ -1,4 +1,10 @@
-# Pokémon
+# Pokémon Assets
+<p align="center">
+ 
+  ![Offline](https://img.shields.io/badge/PokeAPI-v2-yellowgreen)
+  ![Made with](https://img.shields.io/badge/Python-3-red)
+</p>
+
  The highest quality Pokemon images.
  
  Also it contains a smaller version of the dataset from PokeAPI for offline usage (Which I used in my web app).
