@@ -1,7 +1,7 @@
 
 
 [build]
-command = 'ls && ./build.sh'
+command = 'go build -o out'
 
 [build.processing.images]
 compress = true
