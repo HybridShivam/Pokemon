@@ -10,7 +10,7 @@ import (
 
 func main() {
 	godotenv.Load()
-
+	godotenv.Load("$HOME/.env")
 
 	fs := http.FileServer(http.Dir("./assets"))
 	port := "8080"
