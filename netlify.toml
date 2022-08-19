@@ -1,2 +1,8 @@
+
+
 [build]
 base = './'
+command = './build.sh'
+
+[build.processing.images]
+compress = true
