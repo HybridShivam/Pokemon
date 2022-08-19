@@ -5,3 +5,7 @@ command = 'go build -o out'
 
 [build.processing.images]
 compress = true
+
+PORT = 8888
+command = './out'
+port = 8888
