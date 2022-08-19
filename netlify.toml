@@ -1,8 +1,8 @@
 
 
 [build]
-base = './'
-command = './build.sh'
+base = './assets'
+command = 'ls && ./build.sh'
 
 [build.processing.images]
 compress = true
