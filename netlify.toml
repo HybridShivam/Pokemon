@@ -1,11 +1,14 @@
 
 
 [build]
-command = 'go build -o out'
+command = 'GOBIN=$(pwd)/functions go install ./...'
+functions = "functions"
+publish = "assets"
 
 [build.processing.images]
 compress = true
 
-PORT = 8888
-command = './out'
-port = 8888
+[[redirects]]
+from = "/api/*"
+status = 200
+to = "/.netlify/functions/gateway/:splat"
