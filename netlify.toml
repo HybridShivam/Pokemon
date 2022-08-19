@@ -1,7 +1,6 @@
 
 
 [build]
-base = './assets'
 command = 'ls && ./build.sh'
 
 [build.processing.images]
