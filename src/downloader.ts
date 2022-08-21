@@ -16,6 +16,7 @@ async function main() {
       responseType: "stream",
     });
     let form = "";
+    // TODO: use ids instead of names
     const name = url.name;
     if (name.split("-").length > 1) {
       form = name.split("-").slice(1).join("-");
