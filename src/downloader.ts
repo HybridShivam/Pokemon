@@ -15,12 +15,13 @@ async function main() {
     const { data } = await axios.get<any>(url.url, {
       responseType: "stream",
     });
+    let form = "";
     const name = url.name;
     if (name.split("-").length > 1) {
-      // do [id]-[form] stuff here
+      form = name.split("-").slice(1).join("-");
     }
     const stream = data.pipe(
-      fs.createWriteStream("assets/" + url.name + ".png")
+      fs.createWriteStream("assets/" + name + form + ".png")
     );
 
     stream.on("finish", () => console.log(url.name));
