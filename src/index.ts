@@ -2,16 +2,7 @@ import { JSDOM } from "jsdom";
 import axios from "axios";
 import fs from "fs";
 
-export function pad(number: number | string, length = 3) {
-  let str = "" + number;
-  while (str.length < length) {
-    str = "0" + str;
-  }
-  return str;
-}
-
-const capitalize = (string: string) =>
-  string.charAt(0).toUpperCase() + string.slice(1);
+import { pad, capitalize } from "./util";
 
 async function main() {
   const pollyfills = {
