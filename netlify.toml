@@ -1,0 +1,14 @@
+
+
+[build]
+# command = 'GOBIN=$(pwd)/functions go install ./...'
+# functions = "functions"
+publish = "assets"
+
+[build.processing.images]
+compress = true
+
+# [[redirects]]
+# from = "/api/*"
+# status = 200
+# to = "/.netlify/functions/gateway/:splat"
