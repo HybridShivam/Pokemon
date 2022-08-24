@@ -1,0 +1,12 @@
+mklink 710-Small.png 710.png
+mklink 710-Large.png 710.png
+mklink 710-Super.png 710.png
+mklink 711-Small.png 711.png
+mklink 711-Large.png 711.png
+mklink 711-Super.png 711.png
+mklink 718-10-Power-Construct.png 718-10.png
+mklink 718-50-Power-Construct.png 718.png
+mklink 744-Own-Tempo.png 744.png
+mklink 849-Low-Key-Gmax.png 849-Amped-Gmax.png
+mklink 842-Gmax.png 841-Gmax.png
+mklink 902-Female.png 902.png
