@@ -9,76 +9,87 @@
  
  Also it contains a smaller version of the dataset from PokeAPI for offline usage (Which I used in my web app).
  
- This repository will be available as a public host for the highest quality Pokemon Images.
+ This repository will be available as a public host for the highest quality Pokemon Images, specifically the Official Sugimori Artwork.
  
- Sugimori Artwork to begin with.
- 
- Built to serve the [PokéAPI](https://pokeapi.co/) in the future.
+ Built to work alongside the [PokéAPI](https://pokeapi.co/).
  
  Main source is Bulbapedia for Images.
  
- <img src="https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gigantamax.png" width=200px/> <img src="https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/384-Mega.png" width=200px/> <img src="https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/807.png" width=200px/>
+ <img src="https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gmax.png" width=200px/> <img src="https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/384-Mega.png" width=200px/> <img src="https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/807.png" width=200px/>
  
 # Currently Available:
  *All Forms Included*
+* Hisuian Forms
 * Upto Gen VIII (Compressed)
 * Upto Gen VIII HQ (Original Quality)
 * Thumbnails
 * DataSet from PokeAPI : Pokemon, Pokemon-Species, Moves, Abilities etc. in CSV and JSON format.
- 
+
 # Source
  WebScrapped from: 
  [Bulbapedia](http://bulbapedia.bulbagarden.net)
 
+
 # Getting Started:
-**For Fetching Images:**
-Generate URLs like this :
+
+## A. Directly Fetching Images from this Repository:
+<br>
+
+Fetch base forms:
+```
+SpeciesID.png (padded 000)
+```
 https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/001.png
-https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gigantamax.png
 
-Programmatically fetch base forms:
-```
-this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' + 
-                        this.pad(this.pokemon.id, 3) + '.png';
-```
-*Pad method:*
-```
-pad(number, length) {
-    let str = '' + number;
-    while (str.length < length) {
-      str = '0' + str;
-    }
-    return str;
-  }
-```
-*For Forms: Remember to follow Capital Casing with seperation with '-'
-e.g. 254-Mega , 800-Dawn-Wings, 792-Full-Moon-Phase, 569-Gigantamax, 413-Sandy, 006-Mega-X, 025-Rock-Star etc.*
+For Alternate Forms: 
 
-**For the Scraping Image URLs from Bulbapedia:**
+```
+SpeciesID-FormName.png
+```
+https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/006-Gmax.png
+https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/254-Mega.png
 
-Just clone the repo or download just the src files.
+Get the SpeciesID and Form-Name from PokeAPI and remember to follow Capital Casing with '-' delimiter.<br>
+e.g. 254-Mega , 800-Dawn, 569-Gmax, 413-Sandy, 006-Mega-X, 025-Rock-Star etc.*
+
+Alternatively,
+
+## B. Scrape Image URLs from Bulbapedia using the scripts:
+
+**Just clone the repo or just download the `src` files.**
 
 ```
 # Install Required Libraries first
 python -m pip install requests
 python -m pip install beautifulsoup4
-
-# ImageScrapper.py
-For Scrapping the URLs to URLs.txt and the exceptional URLs to failed.txt
-
-# Downloader.py
-For Downloading images with their id to src/downloads/***.png
-
-# URLs.txt
-Contains all the pokemon URLs
-
-# Failed.txt
-Contains all the exceptional URLs which can't be fetched due to exceptional naming in their page names like Mr. Mime's
-https://bulbapedia.bulbagarden.net/wiki/File:122Mr._Mime.png
 ```
-**For Generating the DataSet from PokeAPI:**
- 1. Just clone the repo or download just the src files.
- 1. Run `src/generateDataSet.py` to generate and Download the dataset. 
+<br>
+
+**1. Fetch Image URLs using this script:**
+
+**`src/imageDownloader/ImageScrapper.py`**
+
+This script fetches all base form URLs to `URLs/URLs.txt` and the logs the failed attempts to `ImageScrapperFailedList.txt`
+
+Note: `ImageScrapperFailedList.txt` Contains all the failed names which could't be fetched due to exceptional naming in their page names like Mr. Mime's
+https://bulbapedia.bulbagarden.net/wiki/File:122Mr._Mime.png
+
+<br>
+
+**2. Downloading the Images from URLs.txt:**
+
+**`src/imageDownloader/Downloader.py`**
+
+Use this script for Downloading images using the URLs.txt to `downloads/id.png`
+(Optional parameter `ReDownloadOnlyCorruptedFiles` to redownload only new/ corrupted files)
+
+Note: `ExceptionalURLs.txt` and `FormURLs.txt` have been manually created, use any download manager to download using them.<br>
+
+
+## C. Generating the DataSet from PokeAPI:
+ 1. Just clone the repo or download just the `src` files.
+ 1. Run `src/dataSet/generateDataSet.py` to generate the dataset.
+ Note: `.csv` files are directly from the [Veekun](https://github.com/veekun/pokedex/tree/master/pokedex/data/csv) database.
 
 # Copyright Notice
 Please note everything in this repository is copyrighted by the Pokémon Company and its affiliates. This repository is merely a compilation of data collected by the editors of Bulbapedia and Data from Veekun and PokeAPI.

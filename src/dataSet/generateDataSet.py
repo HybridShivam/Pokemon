@@ -8,7 +8,7 @@ import re
 
 gameVersions={"red-blue":1,"yellow":2,"gold-silver":3,"crystal":4,"ruby-sapphire":5,"emerald":6,
               "firered-leafgreen":7,"diamond-pearl":8,"platinum":9,"heartgold-soulsilver":10,"black-white":11,"colosseum":12,
-              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18}
+              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18,"lets-go-pikachu-lets-go-eevee": 19,"sword-shield":20}
 
 
 def MachineUrlToID(url):
@@ -26,9 +26,9 @@ def TypeUrlToID(url):
 
 
 def takeInput():
-    print('-----------\n\n\n')
+    print('-----------\n')
     print('What to generate:\n0) All\n1) /pokemon/\n2) /pokemon-species/\n3) /evolution-chain/\n4) /move/\n5) /ability/\nexit) Exit the program')
-    print('\n\n\n-----------')
+    print('\n-----------')
     return input()
 
 
@@ -98,7 +98,7 @@ def gPokemon():
 def gPokemonSpecies():
     print('Generating /pokemon-species/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=10000'
+    mainURL='https://pokeapi.co/api/v2/pokemon-species/?&limit=905'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -117,11 +117,14 @@ def gPokemonSpecies():
         response=req.get(url)
         data=response.json()
         DataToWrite=dict()
+        evoChainID=None
+        if(data['evolution_chain']!=None):
+            evoChainID=EvoChainUrlToID(data['evolution_chain']['url'])
         DataToWrite['BaH']=data['base_happiness']
         DataToWrite['CaR']=data['capture_rate']
         DataToWrite['Co']=data['color']['name']
         DataToWrite['EgG']=[egg['name'] for egg in data['egg_groups']]
-        DataToWrite['EvC']=EvoChainUrlToID(data['evolution_chain']['url'])
+        DataToWrite['EvC']=evoChainID
         DataToWrite['FTE']=[]
         DataToWrite['FD']=None
         DataToWrite['FoS']=data['forms_switchable']
@@ -192,13 +195,13 @@ def gPokemonSpecies():
 def gEvolutionChain():
     print('Generating /evolution-chain/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/evolution-chain/?offset=0&limit=10000'
+    mainURL='https://pokeapi.co/api/v2/evolution-chain/?offset=0&limit=100000'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
     # Storing Individual Requests
     URLs=[]
-    results=[None]*427
+    results=[None]*476
     count=0
     total=len(data['results'])
     for i in data['results']:
@@ -215,14 +218,17 @@ def gEvolutionChain():
     fileName='evolution-chain.json'
     with open(fileName,'w') as f:
         data={'evolution-chains':results}
-        f.write(json.dumps(data))
+        content=json.dumps(data)
+        #Remove Unused URL Data
+        content_min = re.sub('{"name": ("[A-Za-z-]+"), "url": "https:\/\/pokeapi.co\/api\/v2\/evolution-trigger\/\d+\/"}', r"\1", content)
+        content_min2 = re.sub('url": "https:\/\/pokeapi.co\/api\/v2\/pokemon-species\/(\d+)\/"', r'id": \1', content_min)
+        f.write(content_min2)
         print('Data wrote to '+fileName)
-
     
 def gMove():
     print('Generating /move/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/move/?offset=0&limit=728'
+    mainURL='https://pokeapi.co/api/v2/move/?offset=0&limit=826'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -268,7 +274,7 @@ def gMove():
 def gAbility():
     print('Generating /ability/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/ability/?offset=0&limit=233'
+    mainURL='https://pokeapi.co/api/v2/ability/?offset=0&limit=267'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -330,6 +336,3 @@ while(choice!='exit'):
     else:
         print('Enter 0,1,2,3,4,5 or exit')
     choice=takeInput()
-    
-
-    
