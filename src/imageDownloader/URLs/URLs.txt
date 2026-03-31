@@ -935,7 +935,7 @@ https://archives.bulbagarden.net/media/upload/0/08/0974Cetoddle.png
 https://archives.bulbagarden.net/media/upload/c/cb/0975Cetitan.png
 https://archives.bulbagarden.net/media/upload/f/ff/0976Veluza.png
 https://archives.bulbagarden.net/media/upload/b/b8/0977Dondozo.png
-https://archives.bulbagarden.net/media/upload/3/34/0978Tatsugiri.png
+https://archives.bulbagarden.net/media/upload/c/c1/0978Tatsugiri-Curly.png
 https://archives.bulbagarden.net/media/upload/a/a7/0979Annihilape.png
 https://archives.bulbagarden.net/media/upload/7/77/0980Clodsire.png
 https://archives.bulbagarden.net/media/upload/0/03/0981Farigiraf.png
@@ -958,6 +958,10 @@ https://archives.bulbagarden.net/media/upload/5/53/0997Arctibax.png
 https://archives.bulbagarden.net/media/upload/7/70/0998Baxcalibur.png
 https://archives.bulbagarden.net/media/upload/6/6f/0999Gimmighoul.png
 https://archives.bulbagarden.net/media/upload/2/2d/1000Gholdengo.png
+https://archives.bulbagarden.net/media/upload/d/d4/1001Wo-Chien.png
+https://archives.bulbagarden.net/media/upload/1/17/1002Chien-Pao.png
+https://archives.bulbagarden.net/media/upload/1/12/1003Ting-Lu.png
+https://archives.bulbagarden.net/media/upload/7/71/1004Chi-Yu.png
 https://archives.bulbagarden.net/media/upload/6/69/1005Roaring_Moon.png
 https://archives.bulbagarden.net/media/upload/2/25/1006Iron_Valiant.png
 https://archives.bulbagarden.net/media/upload/a/a2/1007Koraidon.png
@@ -1019,7 +1023,3 @@ https://archives.bulbagarden.net/media/upload/e/ef/0877Morpeko-Full.png
 https://archives.bulbagarden.net/media/upload/5/57/0892Urshifu-Single_Strike.png
 https://archives.bulbagarden.net/media/upload/d/df/0902Basculegion.png
 https://archives.bulbagarden.net/media/upload/5/54/0905Enamorus.png
-https://archives.bulbagarden.net/media/upload/d/d4/1001Wo-Chien.png
-https://archives.bulbagarden.net/media/upload/1/17/1002Chien-Pao.png
-https://archives.bulbagarden.net/media/upload/1/12/1003Ting-Lu.png
-https://archives.bulbagarden.net/media/upload/7/71/1004Chi-Yu.png

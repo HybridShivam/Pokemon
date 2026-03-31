@@ -2,9 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 
 # Scrapes Image URLs from Bulbapedia
-
+offset = 905
+limit = 120
 # Retrieve All Pokemon Names
-url = "https://pokeapi.co/api/v2/pokemon/?limit=1025?"
+url = f"https://pokeapi.co/api/v2/pokemon/?offset={offset}&limit={limit}"
 r = requests.get(url)
 data = r.json()
 # Storing Names
@@ -54,13 +55,19 @@ exceptionalPokemonNames = {
     892: "Urshifu-Single_Strike",
     902: "Basculegion",
     905: "Enamorus",
+    916: "Oinkologne",
+    925: "Maushold",
+    931: "Squawkabilly",
+    964: "Palafin",
+    978: "Tatsugiri",
+    982: "Dudunsparce",
     1001: "Wo-Chien",
     1002: "Chien-Pao",
     1003: "Ting-Lu",
     1004: "Chi-Yu",
 }
 # Generating URLs
-id = 1
+id = offset + 1
 for i in pokemonNames:
     if id in exceptionalPokemonNames:
         name = exceptionalPokemonNames[id]
