@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 # Scrapes Image URLs from Bulbapedia
-offset = 905
-limit = 120
+offset = 0
+limit = 1025
 # Retrieve All Pokemon Names
 url = f"https://pokeapi.co/api/v2/pokemon/?offset={offset}&limit={limit}"
 r = requests.get(url)
@@ -27,11 +27,14 @@ exceptionalPokemonNames = {
     492: "Shaymin",
     550: "Basculin-Red",
     555: "Darmanitan",
+    592: "Frillish",
+    593: "Jellicent",
     641: "Tornadus",
     642: "Thundurus",
     645: "Landorus",
     647: "Keldeo",
     648: "Meloetta",
+    668: "Pyroar",
     669: "Flabébé",
     678: "Meowstic",
     681: "Aegislash-Shield",
