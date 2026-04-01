@@ -98,7 +98,7 @@ def gPokemon():
 def gPokemonSpecies():
     print('Generating /pokemon-species/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/pokemon-species/?&limit=905'
+    mainURL='https://pokeapi.co/api/v2/pokemon-species/?&limit=1025'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -201,7 +201,7 @@ def gEvolutionChain():
     data=r.json()
     # Storing Individual Requests
     URLs=[]
-    results=[None]*476
+    results=[None]*(data['count']+50)
     count=0
     total=len(data['results'])
     for i in data['results']:
@@ -228,7 +228,7 @@ def gEvolutionChain():
 def gMove():
     print('Generating /move/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/move/?offset=0&limit=826'
+    mainURL='https://pokeapi.co/api/v2/move/?offset=0&limit=919'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
@@ -274,7 +274,7 @@ def gMove():
 def gAbility():
     print('Generating /ability/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/ability/?offset=0&limit=267'
+    mainURL='https://pokeapi.co/api/v2/ability/?offset=0&limit=307'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
