@@ -8,7 +8,9 @@ import re
 
 gameVersions={"red-blue":1,"yellow":2,"gold-silver":3,"crystal":4,"ruby-sapphire":5,"emerald":6,
               "firered-leafgreen":7,"diamond-pearl":8,"platinum":9,"heartgold-soulsilver":10,"black-white":11,"colosseum":12,
-              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18,"lets-go-pikachu-lets-go-eevee": 19,"sword-shield":20}
+              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18,"lets-go-pikachu-lets-go-eevee": 19,
+              "sword-shield":20,"the-isle-of-armor":21,"the-crown-tundra":22,"brilliant-diamond-shining-pearl":23,"legends-arceus":24,"scarlet-violet":25,
+              "the-teal-mask":26,"the-indigo-disk":27,"red-green-japan":28,"blue-japan":29,"legends-za":30,"mega-dimension":31}
 
 
 def MachineUrlToID(url):
@@ -89,10 +91,23 @@ def gPokemon():
         DataToWrite['W']=data['weight']
         results[DataToWrite['id']]=DataToWrite
     fileName='pokemon.json'
-    with open(fileName,'w') as f:
-        data={'pokemon':results}
-        f.write(json.dumps(data))
-        print('Data wrote to '+fileName)
+    
+    total_entries = len(results)
+    # Use newline='\n' to force 1-byte LF line endings
+    with open(fileName, 'w', encoding='utf-8', newline='\n') as f:
+        f.write('{"pokemon":{\n')
+        # results.items() will follow the API's insertion order
+        for index, (p_id, p_data) in enumerate(results.items()):
+            # separators=(',', ':') removes the structural whitespace
+            json_line = json.dumps(p_data, separators=(',', ':'))
+            line = f'"{p_id}":{json_line}'
+            # Add comma and newline for all except the last entry
+            if index < total_entries - 1:
+                f.write(line + ',\n')
+            else:
+                f.write(line + '\n')
+        f.write('}}')
+    print(f'Done! Saved {fileName} ({total_entries} entries)')
 
     
 def gPokemonSpecies():
@@ -158,39 +173,17 @@ def gPokemonSpecies():
             DataToWrite['varieties'].append(variety)
         results.append(DataToWrite)
     fileName='pokemon-species.json'
-    with open(fileName,'w') as f:
-        data={'pokemon-species':results}
-        f.write(json.dumps(data))
-        print('Data wrote to '+fileName)
-
+    # Pre-calculate minified strings for each species
+    # separators=(',', ':') removes all internal spaces
+    lines = [json.dumps(species, separators=(',', ':')) for species in results]
     
-'''def gEvolutionChain():
-    print('Generating /evolution-chain/')
-    # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/evolution-chain/?offset=0&limit=100000'
-    print(mainURL)
-    r=req.get(mainURL)
-    data=r.json()
-    # Storing Individual Requests
-    URLs=[]
-    results=[]
-    count=0
-    total=len(data['results'])
-    for i in data['results']:
-        count=count+1
-        percent=math.floor((count/total)*100)
-        if(percent%2==0):
-            print(str(percent)+'% ('+str(count)+'/'+str(total)+')')
-        url=i['url']
-        URLs.append(i['url'])
-        response=req.get(url)
-        data=response.json()
-        results.append(data)
-    fileName='evolution-chain.json'
-    with open(fileName,'w') as f:
-        data={'evolution-chains':results}
-        f.write(json.dumps(data))
-        print('Data wrote to '+fileName)'''
+    # Use newline='\n' to force 1-byte LF line endings for Windows/Git efficiency
+    with open(fileName, 'w', encoding='utf-8', newline='\n') as f:
+        f.write('{"pokemon-species":[\n')
+        f.write(',\n'.join(lines))
+        f.write('\n]}')
+    print(f'Done! Saved {fileName} ({len(results)} entries)')
+
 
 def gEvolutionChain():
     print('Generating /evolution-chain/')
@@ -201,7 +194,8 @@ def gEvolutionChain():
     data=r.json()
     # Storing Individual Requests
     URLs=[]
-    results=[None]*(data['count']+50)
+    max_id = int(data['results'][-1]['url'].strip('/').split('/')[-1])
+    results=[None]*(max_id) # Pre-size the list to accommodate all IDs, including any gaps
     count=0
     total=len(data['results'])
     for i in data['results']:
@@ -214,17 +208,32 @@ def gEvolutionChain():
         response=req.get(url)
         data=response.json()
         results[data['id']-1]=data
-    print(results)
+    # print(results)
     fileName='evolution-chain.json'
-    with open(fileName,'w') as f:
-        data={'evolution-chains':results}
-        content=json.dumps(data)
-        #Remove Unused URL Data
-        content_min = re.sub('{"name": ("[A-Za-z-]+"), "url": "https:\/\/pokeapi.co\/api\/v2\/evolution-trigger\/\d+\/"}', r"\1", content)
-        content_min2 = re.sub('url": "https:\/\/pokeapi.co\/api\/v2\/pokemon-species\/(\d+)\/"', r'id": \1', content_min)
-        f.write(content_min2)
-        print('Data wrote to '+fileName)
-    
+    processed_lines = []
+    for chain in results:
+        if chain is None:
+            # Represents a missing ID in the array to keep indices aligned
+            processed_lines.append('null')
+        else:
+            # 1. Minify the individual chain
+            # separators=(',', ':') is vital to keep the file size down
+            line = json.dumps(chain, separators=(',', ':'))
+            # 2. Apply your custom Regex cleanups
+            # Simply Evolution Trigger Objects to their name string
+            line = re.sub(r'{"name":("[A-Za-z-]+"),"url":"https://pokeapi\.co/api/v2/evolution-trigger/\d+/"}', r'\1', line)
+            # Convert Pokemon Species URLs to just their ID number
+            line = re.sub(r'url":"https://pokeapi\.co/api/v2/pokemon-species/(\d+)/"', r'id":\1', line)
+            processed_lines.append(line)
+
+    # Use newline='\n' to force LF format for Windows/Git consistency
+    with open(fileName, 'w', encoding='utf-8', newline='\n') as f:
+        f.write('{"evolution-chains":[\n')
+        f.write(',\n'.join(processed_lines))
+        f.write('\n]}')
+    print(f'Done! Saved {fileName} ({len(processed_lines)} entries)')
+
+
 def gMove():
     print('Generating /move/')
     # Retrieve All Requests
@@ -265,10 +274,14 @@ def gMove():
             DataToWrite['machines'][gameVersions[entry['version_group']['name']]]=MachineUrlToID(entry['machine']['url'])
         results.append(DataToWrite)
     fileName='move.json'
-    with open(fileName,'w') as f:
-        data={'moves':results}
-        f.write(json.dumps(data))
-        print('Data wrote to '+fileName)
+    lines = [json.dumps(move, separators=(',', ':')) for move in results]
+
+    # Use newline='\n' to force LF line endings (1 byte vs 2 for CRLF)
+    with open(fileName, 'w', encoding='utf-8', newline='\n') as f:
+        f.write('{"moves":[\n')
+        f.write(',\n'.join(lines))
+        f.write('\n]}')
+    print(f'Done! Saved {fileName} ({len(results)} entries)')
 
     
 def gAbility():
@@ -308,12 +321,17 @@ def gAbility():
                 break
         results.append(DataToWrite)
     fileName='ability.json'
-    with open(fileName,'w') as f:
-        data={'abilities':results}
-        f.write(json.dumps(data))
-        print('Data wrote to '+fileName)
+    # Minify each ability individually
+    # separators=(',', ':') removes spaces after punctuation
+    lines = [json.dumps(ability, separators=(',', ':')) for ability in results]
 
-    
+    # Force LF line endings for consistency across your Firebase assets
+    with open(fileName, 'w', encoding='utf-8', newline='\n') as f:
+        f.write('{"abilities":[\n')
+        f.write(',\n'.join(lines))
+        f.write('\n]}')
+    print(f'Done! Saved {fileName} ({len(results)} entries)')
+
 
 choice=takeInput()
 while(choice!='exit'):
