@@ -42,7 +42,7 @@ Fetch base forms:
 ```
 SpeciesID.png (padded 0000)
 ```
-https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/001.png
+https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/0001.png
 
 For Alternate Forms: 
 

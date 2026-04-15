@@ -2,16 +2,22 @@ import json
 import requests as req
 import math
 import re
+import csv
 
+def load_version_data():
+    games = {}
+    gameVersions = {}
+    with open('versions.csv', mode='r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            games[row['identifier']] = int(row['id'])
+    with open('version-groups.csv', mode='r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            gameVersions[row['identifier']] = int(row['id'])
+    return gameVersions, games
 
-
-
-gameVersions={"red-blue":1,"yellow":2,"gold-silver":3,"crystal":4,"ruby-sapphire":5,"emerald":6,
-              "firered-leafgreen":7,"diamond-pearl":8,"platinum":9,"heartgold-soulsilver":10,"black-white":11,"colosseum":12,
-              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18,"lets-go-pikachu-lets-go-eevee": 19,
-              "sword-shield":20,"the-isle-of-armor":21,"the-crown-tundra":22,"brilliant-diamond-shining-pearl":23,"legends-arceus":24,"scarlet-violet":25,
-              "the-teal-mask":26,"the-indigo-disk":27,"red-green-japan":28,"blue-japan":29,"legends-za":30,"mega-dimension":31}
-
+gameVersions, games = load_version_data()
 
 def MachineUrlToID(url):
     return int(re.sub(r'http(s)?:\/\/pokeapi.co\/api\/v2\/machine\/(\d+)\/', '\\2', url))
@@ -69,8 +75,16 @@ def gPokemon():
         for i in data['held_items']:
             item=dict()
             item['n']=i['item']['name']
-            item['%']=i['version_details'][-1]['rarity']
-            DataToWrite['HI'].append(item)
+            version_id=len(i['version_details'])-1 # Start with the latest version for the item
+            while(version_id>=0):
+                latestVersion=i['version_details'][version_id]
+                if(latestVersion['version']['name'] !='xd'): # skip XD
+                    item['%']=latestVersion['rarity']
+                    break
+                else:
+                    version_id=version_id-1
+            if('%' in item):
+                DataToWrite['HI'].append(item)
         DataToWrite['id']=data['id']
         DataToWrite['isD']=data['is_default']
         DataToWrite['N']=data['name']
@@ -158,6 +172,8 @@ def gPokemonSpecies():
                 flavor['v']=entry['version']['name']
                 flavor['e']=entry['flavor_text']
                 DataToWrite['FTE'].append(flavor)
+        # Sorts the list in-place based on the integer value in gameVersions
+        DataToWrite['FTE'].sort(key=lambda x: games.get(x['v'], 999))
         for entry in data['form_descriptions']:
             if(entry['language']['name']=='en'):
                 DataToWrite['FD']=entry['description']
@@ -287,7 +303,7 @@ def gMove():
 def gAbility():
     print('Generating /ability/')
     # Retrieve All Requests
-    mainURL='https://pokeapi.co/api/v2/ability/?offset=0&limit=307'
+    mainURL='https://pokeapi.co/api/v2/ability/?offset=0&limit=311'
     print(mainURL)
     r=req.get(mainURL)
     data=r.json()
