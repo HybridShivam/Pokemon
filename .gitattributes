@@ -1,2 +1,10 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# TARGETED DATA: Only these files in this folder are forced to LF
+/src/assets/data/*.json text eol=lf
+/src/assets/data/*.csv  text eol=lf
+
+
+# Explicitly mark assets as binary so Git never scans them
+*.png binary
+*.jpg binary
+*.psd binary
+*.ico binary
